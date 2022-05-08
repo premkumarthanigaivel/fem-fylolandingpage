@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-page-custom-font */
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head"
-import Image from "next/image"
 import styled, { css } from "styled-components"
-import Brand from "components/icons/Brand"
+import IconBrand from "components/icons/Brand"
 import Phone from "components/icons/Phone"
 import Email from "components/icons/Email"
 import Facebook from "components/icons/Facebook"
@@ -52,21 +51,23 @@ const Header = styled.header`
   margin: 70px 50px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 `
 const Navigation = styled.nav`
   display: flex;
-  width: 20vw;
+  flex-basis: 20vw;
   justify-content: space-around;
+  align-items: center;
 `
 const Main = styled.main``
 const Section = styled.section``
 const SectionHeader = styled.h1`
   font-family: "Raleway", sans-serif;
-  font-size: 36px;
+  font-size: 2.3rem;
 `
 const SectionDescription = styled.p`
   font-family: "Open Sans", sans-serif;
-  font-size: 15px;
+  font-size: 0.9rem;
 `
 const Footer = styled.footer``
 
@@ -95,6 +96,12 @@ const GetEarlyAccessSection = styled(Section)`
 const EmailInput = styled.input`
   padding: 10px;
   width: ${props => (props.width ? props.width : "300px")};
+  border: 2px solid #b4b4b4;
+  border-radius: 3px;
+
+  ::placeholder {
+    color: #ccc;
+  }
 `
 
 const TestimonialCard = styled.div`
@@ -124,14 +131,110 @@ const Curve = styled.img`
   top: 4px;
 `
 
-const PageLayout = styled.div`
-  // margin: 70px 50px;
-  /*   display: grid;
-  grid-template-columns: 1fr 1fr;
+const Brand = styled(IconBrand)``
 
-  ${Header} {
-    grid-area: 1/1/1/3;
-  } */
+const PageLayout = styled.div`
+  @media (max-width: 700px) {
+    ${Brand} {
+      width: 100px;
+      height: 50px;
+    }
+    ${Header} {
+      margin: 25px 25px;
+    }
+    ${Navigation} {
+      flex-basis: 200px;
+      font-size: 14px;
+      justify-content: end;
+      > * {
+        margin-left: 20px;
+      }
+    }
+
+    ${GetStartedSection} {
+      margin: 25px 25px;
+      align-items: center;
+      flex-direction: column;
+
+      > div {
+        order: 2;
+        width: 100%;
+      }
+      svg {
+        width: 300px;
+        height: 300px;
+      }
+      input {
+        width: 100%;
+      }
+      button {
+        margin-top: 10px;
+        width: 100%;
+      }
+    }
+
+    ${TestimonialSection} {
+      align-items: center;
+      flex-direction: column;
+
+      > div {
+        order: 2;
+        width: 100%;
+        align-items: center;
+      }
+      svg {
+        width: 300px;
+        height: 300px;
+      }
+      input {
+        width: 100%;
+      }
+      button {
+        margin-top: 10px;
+        width: 100%;
+      }
+    }
+
+    ${GetEarlyAccessSection} {
+      padding: 25px 25px;
+
+      > div {
+        flex-direction: column;
+      }
+
+      > div > * {
+        width: 100% !important;
+        margin-right: 0px !important;
+      }
+
+      input,
+      button {
+        margin-top: 15px;
+        width: 100%;
+      }
+    }
+
+    ${SectionHeader} {
+      font-size: 1.8rem;
+    }
+    ${SectionDescription} {
+      font-size: 0.8rem;
+    }
+
+    ${Footer} {
+      flex-direction: column;
+      height: auto !important;
+      align-items: flex-start !important;
+      > * {
+        padding-left: 2rem;
+        margin-top: 1rem;
+      }
+      > div:last-child {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
 `
 
 export default function Home() {
@@ -197,7 +300,13 @@ export default function Home() {
             </Flex>
             <GetStartedIllustration />
           </GetStartedSection>
-          <Curve src="/bg-curve-desktop.svg" alt="" />
+          {/*  <Curve
+            srcSet="/bg-curve-mobile.svg 375w,
+          /bg-curve-desktop.svg 800w"
+            sizes="(max-width: 700px) 375px,
+            800px"
+            src="/bg-curve-desktop.svg"
+          /> */}
           <TestimonialSection>
             <Flex
               column
@@ -254,7 +363,7 @@ export default function Home() {
                     fontFamily: '"Raleway", sans-serif',
                   }}
                 >
-                  Get early access today{" "}
+                  Get early access today
                 </h1>
                 <p
                   style={{
@@ -307,7 +416,7 @@ export default function Home() {
           }}
         >
           <Flex column childCssStyles="margin-top:20px;">
-            <Brand color="white" />
+            <Brand color="rgb(255,255,255)" />
             <div>
               <Phone />
               &nbsp; Phone: +1-543-123-4567
