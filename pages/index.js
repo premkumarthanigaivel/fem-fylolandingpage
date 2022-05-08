@@ -3,6 +3,7 @@
 import Head from "next/head"
 import styled, { css } from "styled-components"
 import IconBrand from "components/icons/Brand"
+import IconBrandColor from "components/icons/BrandColor"
 import Phone from "components/icons/Phone"
 import Email from "components/icons/Email"
 import Facebook from "components/icons/Facebook"
@@ -85,7 +86,7 @@ const GetStartedSection = styled(Section)`
 
 const TestimonialSection = styled(Section)`
   padding: 50px 50px;
-  background-color: hsl(240, 75%, 98%);
+  background-color: hsl(240deg 56% 98%);
   display: flex;
   justify-content: space-between;
 `
@@ -94,6 +95,7 @@ const GetEarlyAccessSection = styled(Section)`
   background-color: hsl(238, 22%, 44%);
 `
 const EmailInput = styled.input`
+  outline: none;
   padding: 10px;
   width: ${props => (props.width ? props.width : "300px")};
   border: 2px solid #b4b4b4;
@@ -132,10 +134,11 @@ const Curve = styled.img`
 `
 
 const Brand = styled(IconBrand)``
+const BrandColor = styled(IconBrandColor)``
 
 const PageLayout = styled.div`
   @media (max-width: 700px) {
-    ${Brand} {
+    ${Brand},${BrandColor} {
       width: 100px;
       height: 50px;
     }
@@ -300,13 +303,15 @@ export default function Home() {
             </Flex>
             <GetStartedIllustration />
           </GetStartedSection>
-          {/*  <Curve
+          <Curve
             srcSet="/bg-curve-mobile.svg 375w,
           /bg-curve-desktop.svg 800w"
             sizes="(max-width: 700px) 375px,
             800px"
             src="/bg-curve-desktop.svg"
-          /> */}
+            width="100%"
+            height="auto"
+          />
           <TestimonialSection>
             <Flex
               column
@@ -416,7 +421,7 @@ export default function Home() {
           }}
         >
           <Flex column childCssStyles="margin-top:20px;">
-            <Brand color="rgb(255,255,255)" />
+            <BrandColor />
             <div>
               <Phone />
               &nbsp; Phone: +1-543-123-4567
